@@ -15,7 +15,7 @@
         <div class="container-fluid">
            
         <div class="title">
-            <h1>Your Free Currency Convertor</h1>
+            <h1>Your Currency Convertor</h1>
             <p id="tagline">Convert your Currency in realtime</p>
         </div>
 	          
@@ -64,6 +64,21 @@
 </footer>
 
 </div>
-</body>
+
+<!-- <script src="/sw.js"></script> -->
+<script src="js/idb.js"></script>
 <script src="js/currencyconvertor.js"></script>
+<script>
+    // if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').then( success => {
+    console.log('Registration worked!');
+  }).catch(error=> {
+    console.log(`Registration failed ${error}`)
+  });
+        navigator.serviceWorker.ready.then(registration => {
+           console.log('Service Worker Ready');
+        });
+    //   }
+</script>
+</body>
 </html>
