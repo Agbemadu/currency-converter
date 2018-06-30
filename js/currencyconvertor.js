@@ -1,20 +1,7 @@
 
 var dbPromise = idb.open('currency-convertor', 1, (upgradeDb) => {
     var keyValStore = upgradeDb.createObjectStore('conversion-rates');
-    // keyValStore.put("world", "hello");
   });
-  
-  // read"
-//   function getVal(key){
-//     dbPromise.then((db) =>{
-//     const tx = db.transaction('conversion-rates');
-//     let keyValStore = tx.objectStore('conversion-rates');
-//     return keyValStore.get(key);
-//   })
-//   .then((val)=> {
-//     console.log('The value of "hello" is:', val);
-//   });  
-//   }
   
   
   // set"
@@ -81,6 +68,7 @@ function convertCurrency() {
     toCurrency = encodeURIComponent(toCurrency);
     const query = fromCurrency + '_' + toCurrency;
     let conversionRate
+    
   //check's if the conversion rate is in the db    
     dbPromise.then((db) =>{
         const tx = db.transaction('conversion-rates');
@@ -91,36 +79,33 @@ function convertCurrency() {
         console.log('The value of "hello" is:', val);
     if (val != null){
     conversionRate = val
+    let userInput = document.getElementById("amount").value;
+  let total = conversionRate * userInput;
+  let actualConversion = Math.round(total * 100)/100;
+  console.log(actualConversion)
+  document.getElementById('amountResult').innerHTML = `${toCurrency} ${actualConversion}`;
     }else{
-     let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
+    if(navigator.onLine == true){
+       let url = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
      fetch(url).then((response)=>{
   return response.json().then((results)=>{
  console.log(results, query)
  conversionRate = results[query];
   console.log(conversionRate)
   //set's the conversion rate to the indexedDB
-  setVal(query,conversionRate)})
-  }); 
-}
-let userInput = document.getElementById("amount").value;
-let total = conversionRate * userInput;
+  setVal(query,conversionRate)
+  let userInput = document.getElementById("amount").value;
+  let total = conversionRate * userInput;
   let actualConversion = Math.round(total * 100)/100;
   console.log(actualConversion)
-document.getElementById('amountResult').innerHTML = actualConversion;
+  document.getElementById('amountResult').innerHTML = `${toCurrency} ${actualConversion}`;
+  })
+  });   
+    }else{
+        alert('Looks like this exchange rate is not available offline. Get connectivity and try again')
+    }
+    
+  }
 })
-
-// fetch(url).then((response)=>{
-// return response.json().then((results)=>{
-//  console.log(results)
-//   let conversionRate = results[query];
-//   console.log(conversionRate)
-//   setVal(query,conversionRate)
-//   let userInput = document.getElementById("amount").value;
-//   let total = conversionRate * userInput;
-//     let actualConversion = Math.round(total * 100)/100;
-//     console.log(actualConversion)
-//   document.getElementById('amountResult').innerHTML = actualConversion;
-// })
-// })
 
 }

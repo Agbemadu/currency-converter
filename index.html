@@ -5,31 +5,25 @@
 	<title>Currency Convertor</title>
 	<link rel="stylesheet" type="text/css" href="css/mydev.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<meta name="viewpoint" content="width=device-width,initial-scale=1">
 	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="wrapper">
 
-        <div class="container-fluid">
-           
-        <div class="title">
-            <h1>Your Currency Convertor</h1>
-            <p id="tagline">Convert your Currency in realtime</p>
-        </div>
-	          
-        </div>
-         
-
-        <div class="container">
-
-            <div class="row">
-		   <div class="col-md-4"></div>
-           <div class="col-md-4">
-	           <h6>Do your Currency conversion below</h6>
-	        
-	           <form >
+    <div class="container-fluid" id="container-fluid_bg">
+    <header>
+        <h1>Currency Convertor</h1>
+            <p>Convert your Currency in realtime</p> 
+    </header>
+      
+      <div class="row">
+        <section class="col-sm-5 col-md-4"></section>
+        <section class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" id="currency">
+            <h6>Do your Currency conversion below</h6>
+            <form >
 				<label for="amount">Amount:</label>
 	             <input type="number" id="amount" size="40" placeholder="0.00" class="form-control" required name="amount"><br><br>
                  <label for="from">From:</label>&nbsp;&nbsp;
@@ -41,35 +35,28 @@
                     <option value="">Select currency...</option>
                  </select>
                  <br>
-                 
                </form>
+               <hr />
+               <button type="submit" id="btnConvert">Convert</button>
                <div class="total"><h4 id="amountResult">0.00</h4></div>
-               <button type="submit" id="btnConvert" class="btn btn-primary">Convert</button>
-           </div>
-           <div class="col-md-4"></div>
-            </div>
-
-
-           
-       </div>
-<footer>
+           </section>
+           <section class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0"></section>
+        </div>
+      </div>
+    <footer>
         <div class="footer">
           <ul id="aaaa">
 	         <li id="tel"  class="fa fa-phone" aria-hidden="true"><a href="tel:0549525762">&nbsp; 0549525762 &nbsp; |</a></li>
 	         <li id="email"  class="fa fa-envelope" aria-hidden="true"><a href="mailto:agbemadud@gmail.com">&nbsp; agbemadud@gmail.com  &nbsp; |</a></li>
 	         </ul>
-	      <p id="pf"><a href="#top" > Currency Converter</a> &nbsp; &copy 2018
+	      <p id="pf"><a href="#top" > Currency Convertor</a> &nbsp; &copy 2018
 
         </div>
 </footer>
-
-</div>
-
-<!-- <script src="/sw.js"></script> -->
+<script src="/sw.js"></script>
 <script src="js/idb.js"></script>
 <script src="js/currencyconvertor.js"></script>
 <script>
-    // if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js').then( success => {
     console.log('Registration worked!');
   }).catch(error=> {
@@ -78,7 +65,6 @@
         navigator.serviceWorker.ready.then(registration => {
            console.log('Service Worker Ready');
         });
-    //   }
-</script>
-</body>
+    </script>
+    </body>
 </html>
